@@ -18,6 +18,11 @@ app.get("/", async (req, res) => {
   res.send(`Hello, World! The time from the DB is ${rows[0].now}`);
 });
 
+app.get("/jokes", async (req, res) => {
+  const { rows } = await pool.query("SELECT * FROM jokes");
+  res.json(rows);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
